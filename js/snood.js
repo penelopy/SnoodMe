@@ -15,7 +15,7 @@ var Snood = {
 
 
     init : function() {
-        drawSnoods();
+        this.drawSnoods();
     },
 
     drawSnoods : function() {
@@ -25,8 +25,8 @@ var Snood = {
 
         for (j=0; j < Game.numSnoodCols; j++) {
 
-            if (this.snoods[i][j] == 1) {  //previously Breakout.bricks
-                Game.drawSnood(
+            if (Game.snoods[i][j] == 1) {  //previously Breakout.bricks
+                Game.rect(
                     (j * (this.snoodWidth + this.snoodPadding)) + this.snoodPadding,
                     (i * (this.snoodHeight + this.snoodPadding)) + this.snoodPadding,
                     this.snoodWidth,
