@@ -14,9 +14,28 @@ var Snood = {
 
 
 
+    init : function() {
+        drawSnoods();
+    },
 
+    drawSnoods : function() {
+    // ctx.fillStyle = "#FF1C0A";
+    // ctx.fillRect(25, 25, 30, 30)
+    for (i=0; i < Game.numSnoodRows; i++) {
 
+        for (j=0; j < Game.numSnoodCols; j++) {
 
+            if (this.snoods[i][j] == 1) {  //previously Breakout.bricks
+                Game.drawSnood(
+                    (j * (this.snoodWidth + this.snoodPadding)) + this.snoodPadding,
+                    (i * (this.snoodHeight + this.snoodPadding)) + this.snoodPadding,
+                    this.snoodWidth,
+                    this.snoodHeight,
+                    this.rowColors[i]);
+                }
+            }
+        }
+    },
 
 
 };
