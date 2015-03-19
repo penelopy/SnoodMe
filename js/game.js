@@ -21,12 +21,18 @@
 
   Game.prototype.start = function() {
     this.initSnoods();
+    
+    this.cannon = new Snood.Cannon( {
+      "game": this
+      });
+
     setInterval(this.draw.bind(this), 10);
   };
 
   Game.prototype.draw = function() {
     this.drawBall();
     this.drawSnoods();
+    this.cannon.drawCannon();
   };
 
   Game.prototype.rect = function(x,y,w,h) {
@@ -74,7 +80,7 @@
   };
 
   Game.prototype.drawSnoods = function() {
-  // ctx.fillStyle = "#FF1C0A";
+    // ctx.fillStyle = "#FF1C0A";
   // ctx.fillRect(25, 25, 30, 30)
     for (i=0; i < this.numSnoodRows; i++) {
       for (j=0; j < this.numSnoodCols; j++) {
