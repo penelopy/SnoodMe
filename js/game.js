@@ -1,9 +1,9 @@
-var Game = {
 
-    x : 150,
-    y : 150,
-    dx : 2,
-    dy : 4,
+var Game = {
+    // x : 150,
+    // y : 150,
+    // dx : 2,
+    // dy : 4,
 
     // ballRadius  : 10,
     // rowColors   : ["#FF1C0A", "#FFFD0A", "#00A308", "#0008DB", "#EB0093"],
@@ -11,13 +11,13 @@ var Game = {
     // ballColor   : "#FFFFFF",
     // backColor   : "#000000",
 
-    numSnoodRows : 5,
-    numSnoodCols : 5,
+    // numSnoodRows : 5,
+    // numSnoodCols : 5,
 
 
 // init game
     run : function() {
-        this.initSnoods();
+        SnoodBlock.initSnoods();
         this.drawGameboard();
         // this.drawBall();
         // this.validateBall();
@@ -35,23 +35,16 @@ var Game = {
     },
 
 
-    drawGameboard : function() {
-      this.canvas     = document.getElementById('canvas');
-      this.ctx   = this.canvas.getContext('2d');
-      this.canvasMinX = 0;
-      this.canvasMaxX = this.canvasMinX + this.canvas.width;
-      // this.draw();
+    // drawGameboard : function() {
+    //   this.canvas     = document.getElementById('canvas');
+    //   this.ctx   = this.canvas.getContext('2d');
+    //   this.canvasMinX = 0;
+    //   this.canvasMaxX = this.canvasMinX + this.canvas.width;
+    //   // this.draw();
 
-      // return setInterval(this.draw, 10);
-    },
-
-    // update : function() {
-    //     this.draw();
+    //   // return setInterval(this.draw, 10);
     // },
 
-    // loose : function() {
-    //     clearInterval(this.intervalId);
-    // },
 
     draw : function() {
         // debugger;
@@ -62,71 +55,39 @@ var Game = {
         // this.validateBall();
     },
 
-    drawBall : function() {
-        this.ctx.fillStyle = "#00A308";
-        this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, 10, 0, Math.PI*2, true); 
-        this.ctx.closePath();
-        this.ctx.fill();
-        this.validateBall();
+    // drawBall : function() {
+    //     this.ctx.fillStyle = "#00A308";
+    //     this.ctx.beginPath();
+    //     this.ctx.arc(this.x, this.y, 10, 0, Math.PI*2, true); 
+    //     this.ctx.closePath();
+    //     this.ctx.fill();
+    //     this.validateBall();
 
-        // this.ctx.clearRect(0,0,300,600);
-    },
-
-    validateBall : function() {
-        console.log("hi");
-        if (this.x + this.dx < 0 || this.x + this.dx > this.canvas.width) {
-          this.dx = -this.dx;
-        }
-
-        if (this.y + this.dy < 0 || this.y + this.dy > this.canvas.height) {
-          this.dy = -this.dy;
-        } 
-        console.log("bye");
-        this.x += this.dx;
-        this.y += this.dy;
-    },
-
-     rect : function(x,y,w,h) {
-      this.ctx.beginPath();
-      this.ctx.rect(x,y,w,h);
-      this.ctx.closePath();
-      this.ctx.fill();
-    },
-
-
-    // drawSnoods : function() {
-    // // ctx.fillStyle = "#FF1C0A";
-    // // ctx.fillRect(25, 25, 30, 30)
-    // for (i=0; i < numSnoodRows; i++) {
-
-    //     for (j=0; j < numSnoodCols; j++) {
-
-    //         if (this.snoods[i][j] == 1) {  //previously Breakout.bricks
-    //             this.drawSnood(
-    //                 (j * (Snood.snoodWidth + Snood.snoodPadding)) + Snood.snoodPadding,
-    //                 (i * (Snood.snoodHeight + Snood.snoodPadding)) + Snood.snoodPadding,
-    //                 Snood.snoodWidth,
-    //                 Snood.snoodHeight,
-    //                 Snooo.rowColors[i]);
-    //             }
-    //         }
-    //     }
+    //     // this.ctx.clearRect(0,0,300,600);
     // },
 
-    initSnoods : function() {
-        this.snoods = new Array(this.numSnoodRows);
+    // validateBall : function() {
+    //     console.log("hi");
+    //     if (this.x + this.dx < 0 || this.x + this.dx > this.canvas.width) {
+    //       this.dx = -this.dx;
+    //     }
 
-        for (i=0; i < this.numSnoodRows; i++) {
+    //     if (this.y + this.dy < 0 || this.y + this.dy > this.canvas.height) {
+    //       this.dy = -this.dy;
+    //     } 
+    //     console.log("bye");
+    //     this.x += this.dx;
+    //     this.y += this.dy;
+    // },
 
-            this.snoods[i] = new Array(this.numSnoodCols);
+    //  rect : function(x,y,w,h) {
+    //   this.ctx.beginPath();
+    //   this.ctx.rect(x,y,w,h);
+    //   this.ctx.closePath();
+    //   this.ctx.fill();
+    // },
 
-            for (j=0; j < this.numSnoodCols; j++) {
-                this.snoods[i][j] = 1;
-            }
-        console.log("snood array " + this.snoods);   
-        }
-    },
+
 
 
 

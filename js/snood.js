@@ -1,41 +1,38 @@
-var Snood = {
-  
-    x  : 250,
-    y  : 250,
+//function below "Snood" may be incorrect reference
+(function () {
+  if (typeof Snood === "undefined") {
+    window.Snood = {};
+  }
 
-    canvasMinX : 0,
-    canvasMaxX : 0,
+//when i create an instance of snoodblock pass in game (will probably be "this")
+  var SnoodBlock = Snood.SnoodBlock = function (game) {
+    this.game = game;
+    this.x  = 250;
+    this.y  = 250;
 
-    snoodWidth   : 0,
-    snoodHeight  : 15,
-    snoodPadding : 1,
+    this.canvasMinX = 0;
+    this.canvasMaxX = 0;
 
-    rowColors   : ["#FF1C0A", "#FFFD0A", "#00A308", "#0008DB", "#EB0093"],
+    this.snoodWidth   = 0;
+    this.snoodHeight  = 15;
+    this.snoodPadding = 1;
 
+    this.rowColors   = ["#FF1C0A", "#FFFD0A", "#00A308", "#0008DB", "#EB0093"];
+  };
 
+  SnoodBlock.COLOR = "#505050";
+  SnoodBlock.RADIUS = 25; //change to rectangle later
+  SnoodBlock.SPEED = 4;
 
-    init : function() {
-        this.drawSnoods();
-    },
-
-    drawSnoods : function() {
-    // ctx.fillStyle = "#FF1C0A";
-    // ctx.fillRect(25, 25, 30, 30)
-    for (i=0; i < Game.numSnoodRows; i++) {
-
-        for (j=0; j < Game.numSnoodCols; j++) {
-
-            if (Game.snoods[i][j] == 1) {  //previously Breakout.bricks
-                Game.rect(
-                    (j * (this.snoodWidth + this.snoodPadding)) + this.snoodPadding,
-                    (i * (this.snoodHeight + this.snoodPadding)) + this.snoodPadding,
-                    this.snoodWidth,
-                    this.snoodHeight,
-                    this.rowColors[i]);
-                }
-            }
-        }
-    },
+// Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
 
 
-};
+})();
+
+
+//MIGHT USE THIS LATER FOR COLLIDE
+// SnoodBlock.prototype.collideWith = function (otherObject) {
+//   if (otherObject instanceof Snood.Cannon) {   //again Ship reference here
+//     otherObject.relocate();
+//   }
+// };
