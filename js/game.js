@@ -1,98 +1,95 @@
+(function () {
+  if (typeof Snood === "undefined") {
+    window.Snood = {};
+  }
 
-var Game = {
-    // x : 150,
-    // y : 150,
-    // dx : 2,
-    // dy : 4,
+  var Game = Snood.Game = function (options) {
+    this.x = 150;
+    this.y = 150;
+    this. dx =  2;
+    this. dy =  4;
 
-    // ballRadius  : 10,
-    // rowColors   : ["#FF1C0A", "#FFFD0A", "#00A308", "#0008DB", "#EB0093"],
-    // paddleColor : "#FFFFFF",
-    // ballColor   : "#FFFFFF",
-    // backColor   : "#000000",
+    this.numSnoodRows = 5;
+    this.numSnoodCols = 5;
+    this.snoodBlocks = [];
+    this.bullets = [];
+    this.cannons = [];
+    this.ctx = options.ctx;
+    this.canvasWidth = options.width;
+    this.canvasHeight = options.height;
+  };
 
-    // numSnoodRows : 5,
-    // numSnoodCols : 5,
+  Game.prototype.start = function() {
+    this.initSnoods();
+    setInterval(this.draw.bind(this), 10);
+  };
 
+  Game.prototype.draw = function() {
+    this.drawBall();
+    this.drawSnoods();
+  };
 
-// init game
-    run : function() {
-        SnoodBlock.initSnoods();
-        this.drawGameboard();
-        // this.drawBall();
-        // this.validateBall();
-        // this.ctx.clearRect(0,0,300,600);
+  Game.prototype.rect = function(x,y,w,h) {
+    this.ctx.fillStyle = "#00A308";
+    this.ctx.beginPath();
+    this.ctx.rect(x,y,w,h);
+    this.ctx.closePath();
+    this.ctx.fill();
+  };
 
-        // this.initSnoods();
+  Game.prototype.drawBall = function() {
+    this.ctx.clearRect(0,0,300,600);
+    this.ctx.fillStyle = "#00A308";
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, 10, 0, Math.PI*2, true);
+    this.ctx.closePath();
+    this.ctx.fill();
+    this.validateBall();
+  };
 
-        Events.init();
-        Snood.init();
+  // function originally written for breakout - will need to be rewritten as bullet function
+  Game.prototype.validateBall = function() {
+    if (this.x + this.dx < 0 || this.x + this.dx > this.canvasWidth) {
+      this.dx = -this.dx;
+    }
 
-        // this.intervalId = setInterval(this.update, 10);
-      return setInterval(this.draw.bind(this), 10);
-      // return setInterval(this.draw, 10);
-
-    },
-
-
-    // drawGameboard : function() {
-    //   this.canvas     = document.getElementById('canvas');
-    //   this.ctx   = this.canvas.getContext('2d');
-    //   this.canvasMinX = 0;
-    //   this.canvasMaxX = this.canvasMinX + this.canvas.width;
-    //   // this.draw();
-
-    //   // return setInterval(this.draw, 10);
-    // },
-
-
-    draw : function() {
-        // debugger;
-        this.drawBall();
-        // Game.drawBall();
-        // this.initSnoods();
-        // this.drawSnoods();
-        // this.validateBall();
-    },
-
-    // drawBall : function() {
-    //     this.ctx.fillStyle = "#00A308";
-    //     this.ctx.beginPath();
-    //     this.ctx.arc(this.x, this.y, 10, 0, Math.PI*2, true); 
-    //     this.ctx.closePath();
-    //     this.ctx.fill();
-    //     this.validateBall();
-
-    //     // this.ctx.clearRect(0,0,300,600);
-    // },
-
-    // validateBall : function() {
-    //     console.log("hi");
-    //     if (this.x + this.dx < 0 || this.x + this.dx > this.canvas.width) {
-    //       this.dx = -this.dx;
-    //     }
-
-    //     if (this.y + this.dy < 0 || this.y + this.dy > this.canvas.height) {
-    //       this.dy = -this.dy;
-    //     } 
-    //     console.log("bye");
-    //     this.x += this.dx;
-    //     this.y += this.dy;
-    // },
-
-    //  rect : function(x,y,w,h) {
-    //   this.ctx.beginPath();
-    //   this.ctx.rect(x,y,w,h);
-    //   this.ctx.closePath();
-    //   this.ctx.fill();
-    // },
+    if (this.y + this.dy < 0 || this.y + this.dy > this.canvasHeight) {
+      this.dy = -this.dy;
+    }
+    this.x += this.dx;
+    this.y += this.dy;
+  };
 
 
+// initializes array to contain snoodblocks, indicate presence/absense of snoodblock  
+  Game.prototype.initSnoods = function() {
+    this.snoods = new Array(this.numSnoodRows);
+
+    for (i=0; i < this.numSnoodRows; i++) {
+      this.snoods[i] = new Array(this.numSnoodCols);
+      for (j=0; j < this.numSnoodCols; j++) {
+        this.snoods[i][j] = 1;
+      }
+    }
+  };
+
+  Game.prototype.drawSnoods = function() {
+  // ctx.fillStyle = "#FF1C0A";
+  // ctx.fillRect(25, 25, 30, 30)
+    for (i=0; i < this.numSnoodRows; i++) {
+      for (j=0; j < this.numSnoodCols; j++) {
+        if (this.snoods[i][j] == 1) {
+          x = (j * 55);
+          y = (i * 55);
+          width = 40;
+          height = 40;
+
+          this.rect(x, y, width, height);
+
+        }
+      }
+    }
+  };
 
 
-
-// init();
-
-};
-
-Game.run();
+})();
