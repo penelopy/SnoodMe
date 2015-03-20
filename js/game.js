@@ -26,19 +26,15 @@
       "game": this
       });
     // Events.init();
-    // this.cannon.aimCannon();
-      // document.addEventListener('mousemove', function(event) {
-      //       console.log("test");
-      //   });
-
+    this.cannon.aimCannon();
     setInterval(this.draw.bind(this), 10);
   };
 
   Game.prototype.draw = function() {
     this.drawBall();
     this.drawSnoods();
+    console.log("x =" + this.cannon.x);
     this.cannon.drawCannon();
-    this.cannon.aimCannon();
   };
 
   Game.prototype.rect = function(x,y,w,h) {

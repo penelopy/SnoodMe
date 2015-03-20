@@ -28,16 +28,16 @@
 
   Cannon.prototype.drawCannon = function() {
     this.rect(this.x, this.y, 10, 100);
+    // debugger;
   };
 
   Cannon.prototype.aimCannon = function(){
-    // debugger;
-    // placeholder = this;
+    placeholder = this;
      document.addEventListener('mousemove', function(event) {
-        this.x = event.pageX;
-        console.log("x" + this.x);
-            // console.log("placeholder" + placeholder.x);
+        placeholder.x = event.pageX;
         // debugger;
+        // console.log("x" + this.x);
+        // console.log("placeholder" + placeholder.x);
      });
          // this.drawCannon();
   };
