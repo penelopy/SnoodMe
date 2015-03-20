@@ -1,10 +1,10 @@
 var Events = {
 
-    init : function() {
+    init : function(Cannon) {
 
         
         document.addEventListener('mousemove', function(event) {
-            View.paddle.x = event.pageX - View.canvasMinX;
+            Cannon.drawCannon.x = event.pageX;
         });
 
         document.addEventListener('keydown', function(event) {

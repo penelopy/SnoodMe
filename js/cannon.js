@@ -9,6 +9,8 @@
     this.y = 350;
     this.game = options.game;
     this.ctx = this.game.ctx;
+    this.targetX = 0;
+  };
 
     // fire function
 
@@ -28,8 +30,18 @@
     this.rect(this.x, this.y, 10, 100);
   };
 
-};
-
+  Cannon.prototype.aimCannon = function(){
+    // debugger;
+    // placeholder = this;
+     document.addEventListener('mousemove', function(event) {
+        this.x = event.pageX;
+        console.log("x" + this.x);
+            // console.log("placeholder" + placeholder.x);
+        // debugger;
+     });
+         // this.drawCannon();
+  };
+       // console.log("var x =" + this.x);
 
 
  })();

@@ -1,4 +1,3 @@
-//function below "Snood" may be incorrect reference
 (function () {
   if (typeof Snood === "undefined") {
     window.Snood = {};

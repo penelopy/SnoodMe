@@ -25,6 +25,11 @@
     this.cannon = new Snood.Cannon( {
       "game": this
       });
+    // Events.init();
+    // this.cannon.aimCannon();
+      // document.addEventListener('mousemove', function(event) {
+      //       console.log("test");
+      //   });
 
     setInterval(this.draw.bind(this), 10);
   };
@@ -33,6 +38,7 @@
     this.drawBall();
     this.drawSnoods();
     this.cannon.drawCannon();
+    this.cannon.aimCannon();
   };
 
   Game.prototype.rect = function(x,y,w,h) {
