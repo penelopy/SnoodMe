@@ -13,7 +13,7 @@
         </div>
         <canvas id="canvas"></canvas>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.1.1/randomColor.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.1.1/randomColor.js"></script> -->
 <script type="application/javascript">
 
 
@@ -23,36 +23,28 @@
     canvasEl.height = '400';
     var ctx = canvasEl.getContext("2d");
 
-var Snood = function (ctx) {
+var Snood = function (game) {
+    // console.log(game)
     this.x = 0;
     this.y = 0;
-    this.ctx = ctx;
-    
+    this.ctx = game.ctx;
 };
 
 Snood.prototype.draw = function () {
-    this.ctx.fillStyle = randomColor();
+  // debugger;
+    // this.ctx.fillStyle = randomColor();
+    this.ctx.fillStyle = "#FAFAFA";
     this.ctx.beginPath();
     this.ctx.arc(this.x, this.y, 10, 0, Math.PI*2, true);
     this.ctx.closePath();
     this.ctx.fill();
 };
 
-// snood1 = new Snood();
-// snood1.x = 5;
-// snood1.y = 6;
-
-// snood2 = new Snood();
-// snood2.x = 9;
-// snood2.y = 3;
-
-// snood1.draw();
-// snood2.draw();
-
 
 /////////////////////////////////
 
 var Game = function (ctx) {
+  // debugger;
     this.snoodArray = [];
     this.bulletArray = [];
     this.ctx = ctx;
@@ -60,17 +52,12 @@ var Game = function (ctx) {
     numSnoods = 5;
     this.xOffset = 20;
 
-
     for (var i=0; i < numSnoods; i++) {
-        newSnood = new Snood(ctx);
+        newSnood = new Snood(this);
         newSnood.x = this.xOffset + i * this.padding;
         newSnood.y = 25;
 
-
         this.snoodArray.push(newSnood);
-
-
-        // this.padding += this.x;
     }
     this.draw();
 };
@@ -81,7 +68,8 @@ Game.prototype.draw = function() {
     }
 };
 
-var game = new Game(ctx);
+this.game = new Game(ctx);
+
 
 })();
 </script>

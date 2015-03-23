@@ -1,6 +1,7 @@
 var Snood = function () {
     this.x = 0;
     this.y = 0;
+    
 
 };
 
@@ -30,9 +31,18 @@ var Game = function () {
     this.snoodArray = [];
     this.bulletArray = [];
 
+    numSnoods = 5;
+
+    for (var i=0; i < numSnoods; i++) {
+        newSnood = new Snood();
+        newSnood.x = i;
+        newSnood.y = i;
+        this.snoodArray.push(newSnood);
+    }
 };
 
 Game.prototype.draw = function() {
-
-
+    for (var i=0; i < this.snoodArray.length; i++) {
+        this.snoodArray[i].draw();
+    }
 };
