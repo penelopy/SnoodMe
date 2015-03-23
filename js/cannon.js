@@ -26,10 +26,13 @@
     this.ctx.fill();
   };
 
-  Cannon.prototype.drawCannon = function() {
-    this.rect(this.x, this.y, 10, 100);
-    // debugger;
-  };
+  // Cannon.prototype.drawCannon = function() {
+  //   if (this.x == 150);
+  //       this.rect(this.x, this.y, 10, 100);
+  //   else: 
+        
+  //   // debugger;
+  // };
 
   Cannon.prototype.aimCannon = function(){
     placeholder = this;

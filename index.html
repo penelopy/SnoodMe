@@ -3,6 +3,7 @@
     <head>
         <title>SNOOD</title>
         <link href='css/main.css' rel='stylesheet'>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.1.1/randomColor.js"> -->
     </head>
 
     <body >
@@ -11,28 +12,79 @@
           <span id='logo'>Snood</span>
         </div>
         <canvas id="canvas"></canvas>
-          <script src='js/snood.js' type='text/javascript'></script>
-          <script src='js/cannon.js' type='text/javascript'></script>
-          <script src='js/game.js' type='text/javascript'></script>
-          <script src='js/events.js' type='text/javascript'></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.1.1/randomColor.js"></script>
+<script type="application/javascript">
 
 
-          <script type="application/javascript">
-            (function () {
-              var canvasEl = document.getElementById('canvas');
-              canvasEl.width = '300';
-              canvasEl.height = '400';
-              var ctx = canvasEl.getContext("2d");
+  (function () {
+    var canvasEl = document.getElementById('canvas');
+    canvasEl.width = '300';
+    canvasEl.height = '400';
+    var ctx = canvasEl.getContext("2d");
 
-              var game = new Snood.Game({
-                "ctx": ctx,
-                "width" : canvasEl.width,
-                "height" : canvasEl.height
-                });
-              game.start();
-            })();
-          </script>
+var Snood = function (ctx) {
+    this.x = 0;
+    this.y = 0;
+    this.ctx = ctx;
+    
+};
 
+Snood.prototype.draw = function () {
+    this.ctx.fillStyle = randomColor();
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, 10, 0, Math.PI*2, true);
+    this.ctx.closePath();
+    this.ctx.fill();
+};
+
+// snood1 = new Snood();
+// snood1.x = 5;
+// snood1.y = 6;
+
+// snood2 = new Snood();
+// snood2.x = 9;
+// snood2.y = 3;
+
+// snood1.draw();
+// snood2.draw();
+
+
+/////////////////////////////////
+
+var Game = function (ctx) {
+    this.snoodArray = [];
+    this.bulletArray = [];
+    this.ctx = ctx;
+    this.padding = 25;
+    numSnoods = 5;
+    this.xOffset = 20;
+
+
+    for (var i=0; i < numSnoods; i++) {
+        newSnood = new Snood(ctx);
+        newSnood.x = this.xOffset + i * this.padding;
+        newSnood.y = 25;
+
+
+        this.snoodArray.push(newSnood);
+
+
+        // this.padding += this.x;
+    }
+    this.draw();
+};
+
+Game.prototype.draw = function() {
+    for (var i=0; i < this.snoodArray.length; i++) {
+        this.snoodArray[i].draw();
+    }
+};
+
+var game = new Game(ctx);
+
+})();
+</script>
 
       </div>
     </body>

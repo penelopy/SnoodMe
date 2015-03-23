@@ -15,13 +15,15 @@
     this.snoodWidth   = 0;
     this.snoodHeight  = 15;
     this.snoodPadding = 1;
+    this.color = "#EB0093";
+    this.radius = 20;
 
     this.rowColors   = ["#FF1C0A", "#FFFD0A", "#00A308", "#0008DB", "#EB0093"];
   };
 
-  SnoodBlock.COLOR = "#505050";
-  SnoodBlock.RADIUS = 25; //change to rectangle later
-  SnoodBlock.SPEED = 4;
+  // SnoodBlock.COLOR = "#505050";
+  // SnoodBlock.RADIUS = 25; //change to rectangle later
+  // SnoodBlock.SPEED = 4;
 
 // Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
 
